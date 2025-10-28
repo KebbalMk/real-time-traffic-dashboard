@@ -9,7 +9,8 @@ import plotly.express as px
 import os
 
 # ---- DATABASE CONFIG ----
-IS_CLOUD = os.environ.get("STREAMLIT_SERVER_HOST") is not None
+# Detect if running on Streamlit Cloud
+IS_CLOUD = os.environ.get("STREAMLIT_APP_NAME") is not None
 
 if IS_CLOUD:
     # Cloud environment → Neon
@@ -43,7 +44,7 @@ def db_query(query):
         df = pd.read_sql(query, conn)
     except Exception as e:
         st.error(f"Database connection error: {e}")
-        df = pd.DataFrame()
+        df = pd.DataFrame()  # return empty DataFrame on error
     finally:
         if conn:
             conn.close()

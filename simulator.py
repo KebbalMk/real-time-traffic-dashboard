@@ -9,7 +9,7 @@ import psycopg2
 import os
 
 # ---- DATABASE CONFIG ----
-IS_CLOUD = os.environ.get("STREAMLIT_SERVER_HOST") is not None
+IS_CLOUD = os.environ.get("STREAMLIT_APP_NAME") is not None
 
 if IS_CLOUD:
     # Cloud environment → Neon
