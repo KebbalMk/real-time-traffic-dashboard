@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 streamlit
 pandas
 psycopg2-binary
 plotly
+=======
+streamlit
+pandas
+psycopg2-binary
+plotly
+>>>>>>> 3912b0facf261ce2c9ea5102a95627a05ec2ac28
 sqlalchemy
