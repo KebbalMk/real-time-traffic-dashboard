@@ -1,32 +1,15 @@
-# ----------------------------
-# simulator.py
-# ----------------------------
-
 import time
 import random
 from datetime import datetime
 import psycopg2
-import os
 
-# ---- DATABASE CONFIG ----
-IS_CLOUD = os.environ.get("STREAMLIT_APP_NAME") is not None
-
-if IS_CLOUD:
-    # Cloud environment → Neon
-    DB_HOST = "ep-long-frost-ab47t1oo-pooler.eu-west-2.aws.neon.tech"
-    DB_PORT = "5432"
-    DB_NAME = "neondb"
-    DB_USER = "neondb_owner"
-    DB_PASS = "npg_6CormypUi0be"
-    SSL_MODE = "require"
-else:
-    # Local environment → localhost
-    DB_HOST = "localhost"
-    DB_PORT = "5432"
-    DB_NAME = "Workshop01"
-    DB_USER = "postgres"
-    DB_PASS = "theworldwidechampion"
-    SSL_MODE = "disable"
+# ---- FORCE CLOUD DATABASE ----
+DB_HOST = "ep-long-frost-ab47t1oo-pooler.eu-west-2.aws.neon.tech"
+DB_PORT = "5432"
+DB_NAME = "neondb"
+DB_USER = "neondb_owner"
+DB_PASS = "npg_6CormypUi0be"
+SSL_MODE = "require"
 
 def gen_speed(road_type):
     if road_type == 'Highway':
@@ -65,7 +48,7 @@ def run_simulator():
                     (sensor_id, ts, vehicle_id, speed)
                 )
             conn.commit()
-            time.sleep(5)  # adjust simulation speed
+            time.sleep(5)  # adjust speed
 
     except KeyboardInterrupt:
         print("Simulator stopped by user.")
